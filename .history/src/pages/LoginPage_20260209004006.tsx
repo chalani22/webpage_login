@@ -87,8 +87,10 @@ export default function LoginPage() {
     } catch (err: any) {
       console.error("Google login failed:", err);
 
+      const code = err?.code ? `\nCode: ${err.code}` : "";
+      const message = err?.message ? `\nMessage: ${err.message}` : "";
 
-      alert(`Google login failed.\n${err?.code || ""}\n${err?.message || ""}`);
+      alert(`Google login failed.${code}${message}`);
     } finally {
       setGoogleLoading(false);
     }
