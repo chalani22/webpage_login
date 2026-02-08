@@ -297,7 +297,7 @@ export default function LoginPage() {
               alt="illustration"
               sx={{
                 width: { xs: "100%", sm: "72%" },
-                maxWidth: 661,
+                maxWidth: 660,
                 borderRadius: 6,
                 objectFit: "cover",
                 opacity: 0.9,

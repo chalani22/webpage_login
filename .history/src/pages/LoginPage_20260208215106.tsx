@@ -293,11 +293,11 @@ export default function LoginPage() {
           >
             <Box
               component="img"
-              src="undraw_web-development_f0tp.png"
+              src="https://images.unsplash.com/photo-1520975958225-5b6f4f8f7f1b?auto=format&fit=crop&w=900&q=80"
               alt="illustration"
               sx={{
-                width: { xs: "100%", sm: "72%" },
-                maxWidth: 661,
+                width: { xs: "100%", sm: "78%" },
+                maxWidth: 520,
                 borderRadius: 6,
                 objectFit: "cover",
                 opacity: 0.9,

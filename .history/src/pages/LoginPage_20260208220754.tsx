@@ -296,8 +296,8 @@ export default function LoginPage() {
               src="undraw_web-development_f0tp.png"
               alt="illustration"
               sx={{
-                width: { xs: "100%", sm: "72%" },
-                maxWidth: 661,
+                width: { xs: "100%", sm: "100%" },
+                maxWidth: 700,
                 borderRadius: 6,
                 objectFit: "cover",
                 opacity: 0.9,
