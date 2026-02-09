@@ -291,7 +291,7 @@ export default function LoginPage() {
           >
             <Box
               component="img"
-              src="public/web_dev.png"
+              src="https://images.unsplash.com/photo-1520975958225-5b6f4f8f7f1b?auto=format&fit=crop&w=900&q=80"
               alt="illustration"
               sx={{
                 width: { xs: "100%", sm: "78%" },

@@ -11,6 +11,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import { useTheme } from "@mui/material/styles";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
@@ -24,6 +25,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import GoogleButton from "../components/Auth/GoogleButton";
 import { signInWithGoogle } from "../firebase/auth";
+
 
 const formSchema = z.object({
   email: z.string().min(1, "Email is required").email("Enter a valid email"),
@@ -69,6 +71,7 @@ export default function LoginPage() {
     []
   );
 
+  // No backend login needed (only validation).
   const onSubmit = async (data: LoginForm) => {
     console.log("Form submitted:", data);
     alert("Form is valid ✅ (No backend login needed)");
@@ -79,11 +82,13 @@ export default function LoginPage() {
       setGoogleLoading(true);
 
       const { accessToken } = await signInWithGoogle();
-      sessionStorage.setItem("accessToken", accessToken);
 
+      sessionStorage.setItem("accessToken", accessToken);
       navigate("/token");
     } catch (err: any) {
       console.error("Google login failed:", err);
+
+
       alert(`Google login failed.\n${err?.code || ""}\n${err?.message || ""}`);
     } finally {
       setGoogleLoading(false);
@@ -112,21 +117,19 @@ export default function LoginPage() {
           border: "1px solid #F0F0F0",
         }}
       >
-        <Box
-          sx={{
-            display: { xs: "block", md: "flex" },
-          }}
-        >
-          {/* LEFT: FORM */}
-          <Box
+        <Grid container>
+          {/* LEFT FORM */}
+          <Grid
+            item
+            xs={12}
+            md={5}
             sx={{
-              width: { xs: "100%", md: "42%" },
               px: { xs: 3, sm: 6 },
               py: { xs: 4, sm: 6 },
               backgroundColor: "#FFFFFF",
               display: "flex",
-              alignItems: "center",
               justifyContent: "center",
+              alignItems: "center",
             }}
           >
             <Box sx={{ maxWidth: 420, width: "100%" }}>
@@ -178,7 +181,7 @@ export default function LoginPage() {
                     endAdornment: (
                       <IconButton
                         edge="end"
-                        onClick={() => setShowPassword((p) => !p)}
+                        onClick={() => setShowPassword((prev) => !prev)}
                         sx={{ color: "#9A9A9A" }}
                         aria-label="toggle password visibility"
                       >
@@ -273,12 +276,14 @@ export default function LoginPage() {
                 </Typography>
               </Box>
             </Box>
-          </Box>
+          </Grid>
 
-          {/* RIGHT: ILLUSTRATION */}
-          <Box
+          {/* RIGHT PANEL */}
+          <Grid
+            item
+            xs={12}
+            md={7}
             sx={{
-              width: { xs: "100%", md: "58%" },
               backgroundColor: "#F4F8F0",
               px: { xs: 3, sm: 6 },
               py: { xs: 4, sm: 6 },
@@ -291,11 +296,11 @@ export default function LoginPage() {
           >
             <Box
               component="img"
-              src="public/web_dev.png"
+              src="undraw_web-development_f0tp.png"
               alt="illustration"
               sx={{
-                width: { xs: "100%", sm: "78%" },
-                maxWidth: 520,
+                width: { xs: "100%", sm: "72%" },
+                maxWidth: 661,
                 borderRadius: 6,
                 objectFit: "cover",
                 opacity: 0.9,
@@ -324,8 +329,8 @@ export default function LoginPage() {
               <Box sx={{ width: 18, height: 6, borderRadius: 999, backgroundColor: "#0B0B0B" }} />
               <Box sx={{ width: 6, height: 6, borderRadius: 999, backgroundColor: "#D8D8D8" }} />
             </Stack>
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
       </Paper>
     </Box>
   );
