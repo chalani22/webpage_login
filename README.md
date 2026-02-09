@@ -1,28 +1,83 @@
-# React Login UI + Firebase Google Auth
+# React Login UI (MUI) + Firebase Google Sign-In
 
-A responsive React login UI built with **Material UI (MUI)**, including basic form validation and **Google Sign-In using Firebase Authentication**. After Google login, the app redirects to a **Token** page and displays the user **accessToken**. The project is deployed on **Firebase Hosting**.
+This project is a simple login UI built with React (Vite) and Material UI. It includes basic form validation and Google Sign-In via Firebase Authentication. After signing in with Google, the app redirects to a token page and displays the user token.
 
----
+## What’s included
 
-## ✅ Features
+- Responsive login layout (two-column on desktop, stacked on mobile)
+- Email + password form validation (no backend login)
+- Google Sign-In using Firebase Authentication
+- `/token` page that shows the stored token
+- Firebase Hosting configuration for deployment
 
-- Login page UI built with **Material UI (MUI)**
-- **Mobile responsive** layout (desktop two-column, mobile stacked)
-- Basic **input validation** (email format + required fields)
-- **Google Sign-In** with Firebase Authentication
-- Redirect to `/token` and display **accessToken**
-- Hosted on **Firebase Hosting**
+## Tech stack
 
----
-
-## 🧰 Tech Stack
-
-- React (Vite)
-- TypeScript
+- React + Vite + TypeScript
 - Material UI (MUI)
-- Firebase Authentication (Google Provider)
-- Firebase Hosting
 - React Router
+- Firebase Authentication + Firebase Hosting
+
+## Screenshots
+
+- Login page: `public/login.png`
+- Token page: `public/token.png`
+
+## Project structure (high level)
+
+```text
+src/
+  app/router.tsx
+  components/Auth/GoogleButton.tsx
+  firebase/
+    firebase.ts
+    auth.ts
+  pages/
+    LoginPage.tsx
+    TokenPage.tsx
+```
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+The dev server runs on `http://localhost:5173`.
+
+## Firebase setup (Google Sign-In)
+
+1. Create a Firebase project in the Firebase Console.
+2. Go to **Authentication → Sign-in method** and enable **Google**.
+3. Add a **Web app** under **Project settings** and copy the config values.
+4. Create a `.env` file in the project root:
+
+```bash
+VITE_FIREBASE_API_KEY=YOUR_API_KEY
+VITE_FIREBASE_AUTH_DOMAIN=YOUR_AUTH_DOMAIN
+VITE_FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
+VITE_FIREBASE_STORAGE_BUCKET=YOUR_STORAGE_BUCKET
+VITE_FIREBASE_MESSAGING_SENDER_ID=YOUR_MESSAGING_SENDER_ID
+VITE_FIREBASE_APP_ID=YOUR_APP_ID
+```
+
+Note: don’t commit `.env` to GitHub.
+
+## Routes
+
+- `/` → Login page
+- `/token` → Token page (displays the token stored in `sessionStorage`)
+
+## Deploy (Firebase Hosting)
+
+```bash
+npm run build
+firebase deploy
+```
+
+## Live demo
+
+- https://webpage-login-6a9d5.web.app
 
 ---
 
@@ -35,136 +90,5 @@ A responsive React login UI built with **Material UI (MUI)**, including basic fo
 - **Token Page:**  
   `public/token.png`
   ![Token Page](public/token.png)
----
 
-## 📁 Folder Structure
-
-```text
-src/
-  app/
-    router.tsx
-  components/
-    Auth/
-      GoogleButton.tsx
-  assets/
-  pages/
-    LoginPage.tsx
-    TokenPage.tsx
-  firebase/
-    firebase.ts
-    auth.ts
-App.tsx
-main.tsx
-index.css
-```
-
----
-
-## Getting Started (Local Setup)
-
-### 1) Install dependencies
-```bash
-npm install 
-```
-
-### 2) Start dev server
-```bash
-npm run dev
-```
-App runs on:
-- http://localhost:5173
-
----
-## Firebase Setup (Google Authentication).
-
-### 1)Create Firebase project
-- Go to Firebase Console
-
-- Create a project
-
-### 2)Enable Google Sign-In
-- Firebase Console → Authentication
-
-- Sign-in method → Enable Google
-
-### 3)Add a Web App and get Firebase config
-
-- Firebase Console → Project settings → General → Your apps → Add Web App
-
-- Copy the config values (apiKey, authDomain, etc.)
-
-### 4)Add environment variables
-
-Create a file named .env in the project root:
-
-```bash
-VITE_FIREBASE_API_KEY=YOUR_API_KEY
-VITE_FIREBASE_AUTH_DOMAIN=YOUR_AUTH_DOMAIN
-VITE_FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
-VITE_FIREBASE_STORAGE_BUCKET=YOUR_STORAGE_BUCKET
-VITE_FIREBASE_MESSAGING_SENDER_ID=YOUR_MESSAGING_SENDER_ID
-VITE_FIREBASE_APP_ID=YOUR_APP_ID
-```
-Do not commit ```.env``` to GitHub.
-
- ---
-
-## How Google Login Works
-
-1) User clicks Continue with Google
-
-2) Firebase opens Google Sign-In popup
-
-3) On success, app extracts accessToken
-
-4) Token is stored (example: sessionStorage)
-
-5) User is redirected to /token
-
-6) Token page displays the token
-
----
-
-## Routes
-
-- ```/``` → Login Page
-
-- ```/token```→ Token Page (shows accessToken)
-
----
-## Validation Rules
-- Email:
-  - required
-  - must be a valid email format
-- Password:
-  - required
-
----
-
-## Deploy to Firebase Hosting
-
-### 1)Install Firebase CLI
-```bash
-npm install -g firebase-tools
-```
-
-### 2)Login to Firebase
-```bash
-firebase login
-```
-
-### 3)Initialize hosting
-```bash
-firebase init hosting
-```
-
-### 4)Build and deploy
-```bash
-npm run build
-firebase deploy
-```
----
-## 🔗 Deployment Link
--  https://webpage-login-6a9d5.web.app
- 
 
