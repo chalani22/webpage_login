@@ -81,7 +81,7 @@ firebase deploy
 
 ---
 
-## 🖼️ Screenshots
+## Screenshots
 
 - **Login Page:**  
   `public/login.png`
